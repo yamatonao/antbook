@@ -1,4 +1,3 @@
-// 写経answer
 
 // default
 #include <iostream>
