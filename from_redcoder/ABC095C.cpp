@@ -104,6 +104,45 @@ const long long INF = 1e18;
 const long double PI = acos(-1.0L);
 
 int main(void){
-    
+    ll a;
+    cin >> a;
+    ll b;
+    cin >> b;
+    ll c;
+    cin >> c;
+    ll x;
+    cin >> x;
+    ll y;
+    cin >> y;
+
+    ll ans =INF;
+    ll maxnum =0;
+    CHMAX(maxnum, x);
+    CHMAX(maxnum, y);
+    REP(i, maxnum*2+1){
+        ll tmpx = (x*2) -i;
+        ll tmpy = (y*2) -i;
+        ll tmpans =0;
+        //abピザ料金加算
+        tmpans += i*c;
+
+        if(tmpx >0){
+            if( tmpx % 2){
+                tmpx++;
+            }
+            tmpans += (tmpx /2) *a;
+        }
+        if(tmpy > 0){
+            if( tmpy % 2){
+                tmpy++;
+            }
+            tmpans += (tmpy /2) *b;
+        }
+        
+        CHMIN(ans, tmpans);
+    }
+
+    cout << ans << endl;
+
     return 0;
 }

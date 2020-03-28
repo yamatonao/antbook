@@ -22,7 +22,7 @@
 #include <ccomplex>
 #include <cfenv>
 #include <cinttypes>
-// #include <cstdalign>
+//#include <cstdalign>
 #include <cstdbool>
 #include <cstdint>
 #include <ctgmath>
@@ -90,9 +90,9 @@ using namespace std;
 typedef long long int ll;
 typedef unsigned long long ull;
 typedef long double ld;
-#define REP(i,n) for(ll i=0; i<(n); i++)
-#define REPR(i, n) for(ll i = n;i >= 0;i--)
-#define FOR(i, m, n) for(ll i = m;i < n;i++)
+#define REP(i,n) for(int i=0; i<(n); i++)
+#define REPR(i, n) for(int i = n;i >= 0;i--)
+#define FOR(i, m, n) for(int i = m;i < n;i++)
 #define ALL(n) begin(n),end(n)
 #define IN(a, x, b) (a<=x && x<b)
 #define INIT std::ios::sync_with_stdio(false);std::cin.tie(0);
@@ -104,6 +104,26 @@ const long long INF = 1e18;
 const long double PI = acos(-1.0L);
 
 int main(void){
-    
+    ll n=0;
+    ll ans=0;
+    cin >> n;
+    for (ll i = 1; i <= n;  i++)
+    {
+        if( (i%2) == 0){
+            continue;
+        }
+        ll count=0;
+        for (ll j = 1; j <= n ; j++)
+        {
+            if( (i%j)==0){
+                count++;
+            }
+        }
+        if(count == 8){
+            ans++;
+        }
+    }
+    cout << ans << endl;
+
     return 0;
 }

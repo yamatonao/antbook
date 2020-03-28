@@ -90,9 +90,9 @@ using namespace std;
 typedef long long int ll;
 typedef unsigned long long ull;
 typedef long double ld;
-#define REP(i,n) for(ll i=0; i<(n); i++)
-#define REPR(i, n) for(ll i = n;i >= 0;i--)
-#define FOR(i, m, n) for(ll i = m;i < n;i++)
+#define REP(i,n) for(int i=0; i<(n); i++)
+#define REPR(i, n) for(int i = n;i >= 0;i--)
+#define FOR(i, m, n) for(int i = m;i < n;i++)
 #define ALL(n) begin(n),end(n)
 #define IN(a, x, b) (a<=x && x<b)
 #define INIT std::ios::sync_with_stdio(false);std::cin.tie(0);
@@ -104,6 +104,23 @@ const long long INF = 1e18;
 const long double PI = acos(-1.0L);
 
 int main(void){
-    
+    string s;
+    cin >> s;
+    ll ans =0;
+    ll tmplength=0;
+    for (ll i = 0; i < s.size(); i++)
+    {
+        if( ! (s[i] == 'A' ||
+            s[i] == 'C' ||
+            s[i] == 'G' ||
+            s[i] == 'T') ){
+                CHMAX(ans, tmplength);
+                tmplength = 0;
+            }else{
+                tmplength++;
+            }
+    }
+    CHMAX(ans,tmplength);
+    cout << ans << endl;
     return 0;
 }
