@@ -104,20 +104,70 @@ const long long INF = 1e18;
 const long double PI = acos(-1.0L);
 const long long MOD = 1000000007;
 
-int main(void){
-    ll a;
-    ll b;
-    ll x;
-    cin >> a >> b >> x;
+ll odd_num;
+ll even_num;
 
-    ll tmp1 = b/x;
-    ll tmp2 = (a-1)/x;
-    if(b == 0){
-        cout << "1" << endl;
-    }else if(a == 0){
-        cout << tmp1+1 << endl;
-    }else{
-        cout << tmp1-tmp2 << endl;
+int main(void){
+    ll n;
+    ll p;
+    cin >> n >> p;
+    REP(i,n){
+        ll tmp;
+        cin >>tmp;
+        if(tmp % 2){
+            odd_num++;
+        }else{
+            even_num++;
+        }
     }
+    ll ans=0;
+
+    if(odd_num){
+            ll ans = pow(2,n-1);
+        cout << dec << ans << endl;
+    }else{
+        if(p){
+            cout << "0" << endl;
+        }else{
+            ll ans = pow(2,n);
+            cout << dec << ans << endl;
+        }
+    }
+//    cout << ans << endl;
+    /* ofsuru?
+    if(p){
+        // odd_numから奇数個 * even_num2^n
+        ll num =1;
+        while(1){
+            if(odd_num<num){break;}
+            ll tmp1 =1;
+            ll tmp2 =1;
+            for(ll i=1; i<=num; i++){
+                tmp1 *= odd_num -(i-1);
+                tmp2 *= i;
+            }
+            ans += (tmp1 / tmp2);
+            num+=2;
+        }
+        ans *= pow(2, even_num);
+    }else{
+        // odd_numから偶数個 2,4,6,8,10...選ぶパターン累計 * even_numの2^n
+        ll num=2;
+        ans += 1;
+        while(1){
+            if(odd_num<num){break;}
+            ll tmp1 =1;
+            ll tmp2 =1;
+            for(ll i=1; i<=num; i++){
+                tmp1 *= odd_num -(i-1);
+                tmp2 *= i;
+            }
+//            cout << tmp1 << tmp2 <<endl;
+            ans += (tmp1 / tmp2);
+            num+=2;
+        }
+        ans *= pow(2, even_num);
+    }
+    */
     return 0;
 }

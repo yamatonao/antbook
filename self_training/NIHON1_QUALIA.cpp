@@ -104,20 +104,79 @@ const long long INF = 1e18;
 const long double PI = acos(-1.0L);
 const long long MOD = 1000000007;
 
-int main(void){
-    ll a;
-    ll b;
-    ll x;
-    cin >> a >> b >> x;
+    ll a[2020];
+    ll left_num[2020];
+    ll right_num[2020];
+    ll ans;
+    ll right_mul;
+    ll left_mul;
 
-    ll tmp1 = b/x;
-    ll tmp2 = (a-1)/x;
-    if(b == 0){
-        cout << "1" << endl;
-    }else if(a == 0){
-        cout << tmp1+1 << endl;
-    }else{
-        cout << tmp1-tmp2 << endl;
+long long modinv(long long a, long long m) {
+    long long b = m, u = 1, v = 0;
+    while (b) {
+        long long t = a / b;
+        a -= t * b; swap(a, b);
+        u -= t * v; swap(u, v);
     }
+    u %= m; 
+    if (u < 0) u += m;
+    return u;
+}
+
+
+int main(void){
+    ll n;
+    ll k;
+    cin >> n >> k;
+    REP(i,n){
+        cin >> a[i];
+    }
+
+    if(k==1){
+        right_mul = 0;
+        left_mul = 1;
+    }else{
+        right_mul = k*(k+1);
+        right_mul %= MOD;
+        right_mul *= modinv(2, MOD);
+        right_mul %= MOD;
+
+        left_mul = (k-1)*(k);
+        left_mul %= MOD;
+        left_mul *= modinv(2, MOD);
+        left_mul %= MOD;
+    }
+
+    REP(base,n){
+        REP(target,n){
+            if(base == target ){continue;}
+            if(base > target){
+                if(a[base] > a[target]){
+                    left_num[base]++;
+                }
+            }else{
+                if(a[base] > a[target]){
+                    right_num[base]++;
+                }
+            }
+        }
+    }
+
+    REP(i,n){
+        ll tmp;
+        //右は x(1+2+...+n)
+        tmp = right_num[i] * right_mul;
+        ans += (tmp %= MOD);
+        ans %= MOD;
+        //左は y(1+2+...+n-1)
+        tmp = left_num[i] * left_mul;
+        ans += (tmp %= MOD);
+        ans %= MOD;
+        
+//        cout << ans << endl;
+    }
+
+    cout << ans << endl;
+
     return 0;
 }

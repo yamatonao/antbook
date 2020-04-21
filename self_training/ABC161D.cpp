@@ -104,20 +104,60 @@ const long long INF = 1e18;
 const long double PI = acos(-1.0L);
 const long long MOD = 1000000007;
 
-int main(void){
-    ll a;
-    ll b;
-    ll x;
-    cin >> a >> b >> x;
+bool ret;
+ll ans;
+ll now_no;
+ll k;
 
-    ll tmp1 = b/x;
-    ll tmp2 = (a-1)/x;
-    if(b == 0){
-        cout << "1" << endl;
-    }else if(a == 0){
-        cout << tmp1+1 << endl;
-    }else{
-        cout << tmp1-tmp2 << endl;
+bool dfs(ll i, ll length){
+    bool solved;
+    if(length == 0){
+        now_no++;
+        if(now_no == k){
+            ans += i;
+            return true;
+        }
+        return false;
     }
+
+    if(i>0){
+        solved = dfs(i-1, length -1);
+        if(solved){
+            ans += i * pow(10, length);
+            return true;
+        }
+    }
+
+    solved = dfs(i, length -1);
+    if(solved){
+        ans += i * pow(10, length);
+        return true;
+    }
+
+    if(i<9){
+        solved = dfs(i+1, length -1);
+        if(solved){
+            ans += i * pow(10, length);
+            return true;
+        }
+    }
+
+    return false;
+}
+
+int main(void){
+    cin >>k;
+    ll length = 0;
+
+    while(1){
+        bool solved;
+        for(ll i=1; i<=9; i++){
+            solved = dfs(i, length);
+            if(solved){break;}
+        }
+        if(solved){break;}
+        length++;
+    }
+    cout << ans << endl;
     return 0;
 }

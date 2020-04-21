@@ -102,22 +102,18 @@ template<class T> inline T CHMIN(T & a, const T b) { return a = (a > b) ? b : a;
 const long double EPS = 1e-10;
 const long long INF = 1e18;
 const long double PI = acos(-1.0L);
-const long long MOD = 1000000007;
 
 int main(void){
-    ll a;
-    ll b;
-    ll x;
-    cin >> a >> b >> x;
+    typedef pair<ll, ll> ToEdge;
+    ll v;
+    ll e;
+    cin >> v >> e;
 
-    ll tmp1 = b/x;
-    ll tmp2 = (a-1)/x;
-    if(b == 0){
-        cout << "1" << endl;
-    }else if(a == 0){
-        cout << tmp1+1 << endl;
-    }else{
-        cout << tmp1-tmp2 << endl;
+    vector<vector< ToEdge > > Graph;
+    REP(i, e){
+        ll s;
+        ll t;
+        ll d;
     }
     return 0;
 }
