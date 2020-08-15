@@ -102,8 +102,29 @@ template<class T> inline T CHMIN(T & a, const T b) { return a = (a > b) ? b : a;
 const long double EPS = 1e-10;
 const long long INF = 1e18;
 const long double PI = acos(-1.0L);
+const long long MOD = 1000000007;
 
 int main(void){
-    
+    ll n;
+    ll k;
+    ll max_nums=0;
+    vector<ll> nums;
+    cin >> n >> k;
+    REP(i,n){
+        ll tmp;
+        cin >> tmp;
+        nums.push_back(tmp);
+        CHMAX(max_nums, tmp);
+    }
+    ll gcd_now = gcd(nums[0], nums[1]);
+    for(ll i=2; i<n; i++){
+        gcd_now = gcd(gcd_now, nums[i]);
+    }
+
+    if( (k%gcd_now == 0) && (k<= max_nums) ){
+        cout << "POSSIBLE" <<endl;
+    }else{
+        cout << "IMPOSSIBLE" <<endl;
+    }
     return 0;
 }
